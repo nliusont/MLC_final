@@ -53,3 +53,8 @@ df = df.loc[ df['zscore_steam'] < threshold, : ]
 df = df.loc[ df['zscore_oil2'] < threshold, : ]
 df = df.loc[ df['zscore_oil4'] < threshold, : ]
 df = df.loc[ df['zscore_oil6'] < threshold, : ]
+
+# replace any use type that occurs less than 50 times with 'Other'
+df['use_1'][ df['use_1'].isin(df['use_1'].value_counts()[df['use_1'].value_counts() < 50].index)] = 'Other'
+df['use_2'][ df['use_2'].isin(df['use_2'].value_counts()[df['use_2'].value_counts() < 50].index)] = 'Other'
+df['use_3'][ df['use_3'].isin(df['use_3'].value_counts()[df['use_3'].value_counts() < 50].index)] = 'Other'
