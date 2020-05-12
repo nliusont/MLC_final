@@ -123,24 +123,12 @@ pyplot.savefig("figures/GB.png")
 shap.initjs()
 
 # explain the model's predictions using SHAP
-# (same syntax works for LightGBM, CatBoost, scikit-learn and spark models)
 explainer = shap.TreeExplainer(gb)
 shap_values = explainer.shap_values(X)
 
-# visualize the first prediction's explanation (use matplotlib=True to avoid Javascript)
-shap.force_plot(explainer.expected_value, shap_values[0,:], X.iloc[0,:])
 
 
-# In[57]:
-
-
-sns.set(style="darkgrid")
-shap.summary_plot(shap_values, X, plot_size=(12,15))
-
-
-# In[72]:
-
-
+#shap summary plot
 shap.summary_plot(shap_values, X, plot_size=(15,12), show=False)
 pyplot.xlim(-30,30)
 pyplot.title('Gradient Boosting SHAP Plot')
